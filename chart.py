@@ -17,25 +17,23 @@ df = pd.DataFrame({
     'Lifetime Value': lifetime_value
 })
 
-# Create figure with exactly 512x512 pixels (8x8 inches at 64 DPI)
-fig = plt.figure(figsize=(8, 8), dpi=64)
-ax = fig.add_subplot(111)
+# Create figure - exactly 512x512 pixels with 64 DPI = 8x8 inches
+plt.figure(figsize=(8, 8), dpi=64)
 
-# Create scatterplot
-sns.scatterplot(data=df, x='Acquisition Cost', y='Lifetime Value',
-                s=100, alpha=0.6, color='#2E86AB', ax=ax)
+# Create scatterplot using seaborn
+sns.scatterplot(data=df, x='Acquisition Cost', y='Lifetime Value', 
+                s=100, alpha=0.6, color='#2E86AB')
 
 # Add labels and title
-ax.set_xlabel('Customer Acquisition Cost ($)', fontsize=12, fontweight='bold')
-ax.set_ylabel('Customer Lifetime Value ($)', fontsize=12, fontweight='bold')
-ax.set_title('Customer Analysis: Acquisition Cost vs Lifetime Value', fontsize=14, fontweight='bold')
+plt.xlabel('Customer Acquisition Cost ($)', fontsize=12, fontweight='bold')
+plt.ylabel('Customer Lifetime Value ($)', fontsize=12, fontweight='bold')
+plt.title('Customer Analysis: Acquisition Cost vs Lifetime Value', fontsize=14, fontweight='bold')
 
-# Add grid for better readability
-ax.grid(True, alpha=0.3, linestyle='--')
-ax.set_axisbelow(True)
+# Add grid
+plt.grid(True, alpha=0.3, linestyle='--')
 
-# Save without extra padding
-plt.savefig('chart.png', dpi=64, bbox_inches=None, pad_inches=0, format='png')
+# Save figure
+plt.savefig('chart.png', dpi=64, format='png')
 plt.close()
 
 print('Chart saved as chart.png')
