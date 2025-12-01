@@ -1,0 +1,41 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Generate synthetic customer data
+n_customers = 150
+acquisition_cost = np.random.uniform(50, 500, n_customers)
+lifetime_value = acquisition_cost * np.random.uniform(2, 8, n_customers) + np.random.normal(0, 200, n_customers)
+
+# Create DataFrame
+df = pd.DataFrame({
+    'Acquisition Cost': acquisition_cost,
+    'Lifetime Value': lifetime_value
+})
+
+# Create figure with specific size for 512x512 output
+fig, ax = plt.subplots(figsize=(8, 8), dpi=64)
+
+# Create scatterplot
+sns.scatterplot(data=df, x='Acquisition Cost', y='Lifetime Value', 
+                s=100, alpha=0.6, color='#2E86AB', ax=ax)
+
+# Add labels and title
+ax.set_xlabel('Customer Acquisition Cost ($)', fontsize=12, fontweight='bold')
+ax.set_ylabel('Customer Lifetime Value ($)', fontsize=12, fontweight='bold')
+ax.set_title('Customer Analysis: Acquisition Cost vs Lifetime Value', fontsize=14, fontweight='bold')
+
+# Add grid for better readability
+ax.grid(True, alpha=0.3, linestyle='--')
+
+# Tight layout
+plt.tight_layout()
+
+# Save figure as PNG
+plt.savefig('chart.png', dpi=64, bbox_inches='tight', format='png')
+print('Chart saved as chart.png')
+plt.close()
